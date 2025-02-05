@@ -1,26 +1,21 @@
 import { useState } from 'react'
 import './App.css'
-import { Logos } from './components/Logos'
+import { AddTask } from './components/addTask'
 
-function App() {
-  const [count, setCount] = useState(10)
+function App() { 
+  const [tasks,setTasks] = useState([])
+
+  const addTask = (newTask)=>{
+    let object = {
+      task: newTask,
+      status: false
+    }
+    setTasks([...tasks,object])
+  }
 
   return (
     <>
-      <Logos />
-
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <AddTask addTask={addTask} />
     </>
   )
 }
